@@ -47,6 +47,13 @@
 			"type": "github",
 			"value": "https://github.com/lsh-lenvast",
 			"label": "Github",
+			"order": 3
+		},
+		{
+			"id": "bilibili",
+			"type": "bilibili",
+			"value": "https://space.bilibili.com/396242112",
+			"label": "Bilibili",
 			"order": 2
 		},
 		{

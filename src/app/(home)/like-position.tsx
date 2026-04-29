@@ -1,4 +1,4 @@
-import LikeButton from '@/components/like-button'
+// import LikeButton from '@/components/like-button'
 import { ANIMATION_DELAY, CARD_SPACING } from '@/consts'
 import { motion } from 'motion/react'
 import { useCenterStore } from '@/hooks/use-center'
@@ -35,7 +35,7 @@ export default function LikePosition() {
 					</>
 				)}
 
-				<LikeButton delay={cardStyles.shareCard.order * ANIMATION_DELAY * 1000} />
+				{/* <LikeButton delay={cardStyles.shareCard.order * ANIMATION_DELAY * 1000} /> */}
 			</motion.div>
 		</HomeDraggableLayer>
 	)
