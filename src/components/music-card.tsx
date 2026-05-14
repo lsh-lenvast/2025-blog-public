@@ -12,8 +12,8 @@ import { Pause, SkipBack, SkipForward } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
 
-const MUSIC_FILES = ['/music/close-to-you.mp3', '/music/christmas.m4a']
-const MUSIC_NAMES = ['Close To You', 'Christmas']
+const MUSIC_FILES = ['/music/箫琴声.mp3','/music/榕水缘.mp3', '/music/天下.m4a', '/music/玉堂春.mp3', '/music/苏北中学校歌.mp3']
+const MUSIC_NAMES = ['箫琴声', '榕水缘', '天下', '玉堂春', '苏北中学校歌']
 
 export default function MusicCard() {
 	const pathname = usePathname()
