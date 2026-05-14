@@ -8,11 +8,12 @@ import { CARD_SPACING } from '@/consts'
 import MusicSVG from '@/svgs/music.svg'
 import PlaySVG from '@/svgs/play.svg'
 import { HomeDraggableLayer } from '../app/(home)/home-draggable-layer'
-import { Pause } from 'lucide-react'
+import { Pause, SkipBack, SkipForward } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
 
-const MUSIC_FILES = ['/music/close-to-you.mp3']
+const MUSIC_FILES = ['/music/close-to-you.mp3', '/music/christmas.m4a']
+const MUSIC_NAMES = ['Close To You', 'Christmas']
 
 export default function MusicCard() {
 	const pathname = usePathname()
@@ -130,6 +131,16 @@ export default function MusicCard() {
 		setIsPlaying(!isPlaying)
 	}
 
+	const playNext = () => {
+		const nextIndex = (currentIndex + 1) % MUSIC_FILES.length
+		setCurrentIndex(nextIndex)
+	}
+
+	const playPrev = () => {
+		const prevIndex = (currentIndex - 1 + MUSIC_FILES.length) % MUSIC_FILES.length
+		setCurrentIndex(prevIndex)
+	}
+
 	// Hide component if not on home page and not playing
 	if (!isHomePage && !isPlaying) {
 		return null
@@ -158,16 +169,26 @@ export default function MusicCard() {
 				<MusicSVG className='h-8 w-8' />
 
 				<div className='flex-1'>
-					<div className='text-secondary text-sm'>Close To You</div>
+					<div className='text-secondary text-sm'>{MUSIC_NAMES[currentIndex]}</div>
 
 					<div className='mt-1 h-2 rounded-full bg-white/60'>
 						<div className='bg-linear h-full rounded-full transition-all duration-300' style={{ width: `${progress}%` }} />
 					</div>
 				</div>
 
-				<button onClick={togglePlayPause} className='flex h-10 w-10 items-center justify-center rounded-full bg-white transition-opacity hover:opacity-80'>
-					{isPlaying ? <Pause className='text-brand h-4 w-4' /> : <PlaySVG className='text-brand ml-1 h-4 w-4' />}
-				</button>
+				<div className='flex items-center gap-1'>
+					<button onClick={playPrev} className='flex h-10 w-10 items-center justify-center rounded-full bg-white transition-opacity hover:opacity-80'>
+						<SkipBack className='text-brand h-4 w-4' />
+					</button>
+
+					<button onClick={togglePlayPause} className='flex h-10 w-10 items-center justify-center rounded-full bg-white transition-opacity hover:opacity-80'>
+						{isPlaying ? <Pause className='text-brand h-4 w-4' /> : <PlaySVG className='text-brand ml-1 h-4 w-4' />}
+					</button>
+
+					<button onClick={playNext} className='flex h-10 w-10 items-center justify-center rounded-full bg-white transition-opacity hover:opacity-80'>
+						<SkipForward className='text-brand h-4 w-4' />
+					</button>
+				</div>
 			</Card>
 		</HomeDraggableLayer>
 	)
